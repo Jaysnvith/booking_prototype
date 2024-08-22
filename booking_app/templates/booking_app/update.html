@@ -1,0 +1,25 @@
+{% extends "booking_app/master.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Update{% endblock title %}
+
+{% block content %}
+<section class="section">
+  <div class="block">
+    <div class="icon-text">
+      <span class="icon"><i class="fa-solid fa-file-pen"></i></span>
+      <span>Data Update</span>
+    </div>
+  </div>
+  <div class="block">
+    {% crispy form %}
+  </div>
+
+  <div class="field is-grouped">
+    <div class="control">
+      <button type="submit" class="button is-info" form="data">Save</button>
+      <a id="cancel-button" class="button is-warning">Cancel</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

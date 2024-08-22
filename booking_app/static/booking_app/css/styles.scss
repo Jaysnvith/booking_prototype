@@ -1,0 +1,32 @@
+$primary: #6A9589;
+$link: #7E9CD8;
+$info: #2D4F67;
+$success: #76946A;
+$warning: #FF9E3B;
+$danger: #C34043;
+
+@use "bulma/sass" with (
+  $family-primary: 'Yu Gothic',
+
+  $primary: $primary,
+  $link: $link,
+  $info: $info,
+  $success: $success,
+  $warning: $warning,
+  $danger: $danger,
+);
+
+@mixin hover($property, $value) {
+  transition: all 0.5s;
+  &:hover {
+    #{$property}: #{$value};
+  }
+}
+
+.is-colorized {
+  @include hover(color, $danger)
+}
+
+.is-floating {
+  @include hover(transform,translateY(-5px) )
+}

@@ -1,0 +1,26 @@
+{% extends "booking_app/master.html" %}
+
+{% block title %}Delete{% endblock title %}
+
+{% block content %}
+<section class="section">
+  <div class="block">
+    <div class="icon-text">
+      <span class="icon"><i class="fa-solid fa-trash"></i></span>
+      <span>Data Delete</span>
+    </div>
+  </div>
+
+  <form method="post" action="" id="data" class="block">
+    {% csrf_token %}
+    <p>You are about to delete <b>{{ object }}</b>, are you sure?</p>
+  </form>
+  <div class="field is-grouped">
+    <div class="control">
+      <button type="submit" class="button is-info" form="data">Save</button>
+      <a id="cancel-button" class="button is-warning">Cancel</a>
+    </div>
+  </div>
+
+</section>
+{% endblock %}

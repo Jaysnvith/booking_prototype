@@ -1,0 +1,72 @@
+{% extends "booking_app/master.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<!-- Room Status -->
+<section class="section">
+  <div class="block">
+    <div class="icon-text">
+      <span class="icon"><i class="fa-solid fa-person-shelter"></i></span>
+      <span>Room Status</span>
+    </div>
+  </div>
+  <div class="columns">
+    {% for floor, rooms in grouped_rooms.items %}
+    <div class="column">
+      <p class="title">{{ floor }}{% if floor == 1 %}st{% elif floor == 2 %}nd{% elif floor == 3 %}rd{% else %}th{% endif %} Floor</p>
+      <table class="table is-fullwidth is-hoverable">
+        {% for room in rooms %}
+        <tr>
+          <td><a class="is-colorized has-text-weight-semibold" href="{% url "booking_app:room" pk=room.id %}">{{ room.name }}</a></td>
+          <td class="has-text-right">
+            {% if room.status == 0 %}
+            <span class="has-text-success">{{ room.get_status_display }}</span>
+            <span class="icon has-text-success">
+              <i class="fa-solid fa-check"></i>
+            {% elif room.status == 1 %}
+            <span class="has-text-danger">{{ room.get_status_display }}</span>
+            <span class="icon has-text-danger">
+              <i class="fa-solid fa-circle-xmark"></i>
+            {% endif %}
+            </span>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Booking List -->
+<section class="section">
+  <div class="block">
+    <div class="icon-text">
+      <span class="icon" aria-label="Booking List Icon"><i class="fa-solid fa-clipboard-list"></i></span>
+      <span>Booking List</span>
+    </div>
+  </div>
+  <ul>
+    {% for booking in bookings %}
+    <li class="box is-floating">
+      <a class="is-colorized" href="{% url "booking_app:booking" pk=booking.id %}">
+        <div class="columns is-vcentered">
+          <div class="column is-narrow">
+            <p class="has-text-weight-semibold is-size-4">{{ booking.room }}</p>
+            <p>{{ booking.start_time.date }}</p>
+          </div>
+          <div class="column">
+            <nav class="level is-mobile">
+              <div class="level-left"><p>{{ booking.start_time.time }}</p></div>
+              <div class="level-right"><p>{{ booking.end_time.time }}</p></div>
+            </nav>
+            <div><progress class="progress is-small is-danger"></progress></div>
+          </div>
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock content %}

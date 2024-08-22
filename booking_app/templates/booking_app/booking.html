@@ -1,0 +1,50 @@
+{% extends "booking_app/master.html" %}
+
+{% block title %}Booking{% endblock title %}
+
+{% block content %}
+<section class="section">
+  
+  <!-- image -->
+  <div class="block">
+    <div class="icon-text">
+      <span class="icon"><i class="fa-solid fa-clipboard-list"></i></span>
+      <span>Booking Detail</span>
+    </div>
+  </div>
+
+  <!-- booking list-->
+  <div class="block has-text-centered">
+    <a class="has-text-weight-semibold is-size-4 is-colorized" href="{% url 'booking_app:room' pk=booking.room.id %}">{{ booking.room }}</a>
+  </div>
+  <div class="box is-floating">
+    <div class="columns is-vcentered">
+      <div class="column is-narrow has-text-left">
+        <p class="has-text-weight-semibold has-text-danger is-size-4">{{ booking.start_time.time }}</p>
+        <p class="has-text-danger">{{ booking.start_time.date }}</p>
+      </div>
+      <div class="column">
+        <div><progress class="progress is-large is-danger"></progress></div>
+      </div>
+      <div class="column is-narrow has-text-right">
+        <p class="has-text-weight-semibold has-text-danger is-size-4">{{ booking.end_time.time }}</p>
+        <p class="has-text-danger">{{ booking.end_time.date }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Usage</label>
+    <input class="input" type="text" value="{{ booking.get_usage_display }}" readonly>
+  </div>
+  <div class="field">
+    <label class="label">Request</label>
+    <textarea class="textarea has-fixed-size" rows="7" readonly>{{ booking.request }}</textarea>
+  </div>
+  <div class="field is-grouped">
+    <div class="control">
+      <a class="button is-info" href="{% url 'booking_app:booking_update' pk=booking.id %}">Edit</a>
+      <a class="button is-danger" href="{% url 'booking_app:booking_delete' pk=booking.id %}">Delete</a>
+    </div>
+  </div>
+</section>
+{% endblock  %}
