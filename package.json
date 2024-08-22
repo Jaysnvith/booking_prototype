@@ -4,12 +4,10 @@
   "main": "index.js",
   "scripts": {
     "build-css": "sass --load-path=node_modules booking_app/static/booking_app/css/styles.scss booking_app/static/booking_app/css/styles.css",
-    "start-css": "npm run build-css -- --watch"  },
+    "start-css": "npm run build-css -- --watch"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "bulma": "^1.0.1"
-  }
+  "description": ""
 }

@@ -1,32 +1,22 @@
-$primary: #6A9589;
-$link: #7E9CD8;
-$info: #2D4F67;
-$success: #76946A;
-$warning: #FF9E3B;
-$danger: #C34043;
+@import "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css";
 
-@use "bulma/sass" with (
-  $family-primary: 'Yu Gothic',
 
-  $primary: $primary,
-  $link: $link,
-  $info: $info,
-  $success: $success,
-  $warning: $warning,
-  $danger: $danger,
-);
-
-@mixin hover($property, $value) {
-  transition: all 0.5s;
+// Mixin
+@mixin hover($property, $value, $time) {
+  transition: all $time;
   &:hover {
     #{$property}: #{$value};
   }
 }
 
-.is-colorized {
-  @include hover(color, $danger)
+// Custom Class
+.is-floating-y {
+  @include hover(transform,translateY(-7px), 0.25s)
+}
+.is-floating-x {
+  @include hover(transform,translateX(5px), 0.25s)
 }
 
-.is-floating {
-  @include hover(transform,translateY(-5px) )
+.is-colorized {
+  @include hover(color, #858ee6, 0.25s)
 }
